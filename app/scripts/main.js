@@ -124,10 +124,8 @@ function doConnect()    {
 
     // Get the provider URL
     var provider = document.getElementById('provider_url').value;
-    var provider = document.getElementById('provider_url').value;
     window.web3 = new Web3(new Web3.providers.HttpProvider(provider));
     startApp();
-
 }
 
 /**
@@ -181,6 +179,21 @@ function    doGetNodeStatus()  {
         });
         }
     });
+
+    web3.eth.getSyncing(function(error, result) {
+        if(error) setData('node_synching_status', error, true);
+        else {
+            setData('node_synching_status', 'Is Synching: '+result, (result == 0));
+        }
+    });
+
+    web3.eth.getMining(function(error, result) {
+        if(error) setData('node_mining_status', error, true);
+        else {
+            setData('node_mining_status', 'Is Mining: '+result, (result == 0));
+        }
+    });
+
 }
 
 /**
