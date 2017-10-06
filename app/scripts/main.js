@@ -183,7 +183,7 @@ function    doGetNodeStatus()  {
     web3.eth.getSyncing(function(error, result) {
         if(error) setData('node_synching_status', error, true);
         else {
-            setData('node_synching_status', 'Is Synching: '+result, (result == 0));
+            setData('node_synching_status', 'Is Synching. Current Block: '+result.currentBlock + 'Highest Block: ' + result.highestBlock, (result == 0));
         }
     });
 
@@ -289,7 +289,7 @@ function    doSendTransaction()  {
             var etherscanLinkA=document.getElementById('etherscan_io_tx_link');
             etherscanLinkA.href = createEtherscanIoUrl('tx',result);
             etherscanLinkA.innerHTML='etherscan.io'
-            //console.log(etherscanLinkA)
+            console.log(etherscanLinkA)
         }
     });
 }
@@ -311,7 +311,7 @@ function    doUnlockAccount()  {
     // web3.personal.unlockAccount(account, password)
     
 
-    web3.personal.unlockAccount(account, password,function(error, result)  {
+    web3.personal.unlockAccount(account, password, function(error, result)  {
 
         // console.log(error,result)
         if(error){
@@ -338,7 +338,6 @@ function    doUnlockAccount()  {
 function    doLockAccount() {
 
     
-
     setData('lock_unlock_result','...',true);
     var account = document.getElementById('select_to_unlock_account').value;
     //Synchronous flavor
@@ -362,7 +361,6 @@ function    doLockAccount() {
 function doGetCompilers()  {
 
     
-
     web3.eth.getCompilers(function(error, result){
         if(error){
             setData('list_of_compilers',error,true);

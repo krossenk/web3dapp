@@ -3,7 +3,7 @@
  */
 
 // Holds the base URL for etherscan.io
-var etherscanBaseUrl='https://ropsten.etherscan.io/';
+var etherscanBaseUrl='https://rinkeby.etherscan.io/';
 
 
 // Since some of the functons/API are not available based on the
